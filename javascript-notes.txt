@@ -1,0 +1,82 @@
+how to print statementusing javascript?
+=>console.log();
+
+how to clear the output?
+=> console.clear();
+
+=> \n for new line break
+=> \t for tab
+=> , concat two statement in js accordin to ecma
+=> + concat string and number where as it add two number
+variable in javascript?
+var - till 2015
+let - since  2015
+const- since 2015
+
+difference between var let and const
+
+value change
+--> var and let allow to change the value
+--> const do not allow to change and over write the value
+redeclaration
+-> var allow to redecrale the variable
+-let and const do not allow 
+
+scope
+var has global scope
+let and const has block level scope
+
+control structure
+->if else
+->if else if
+->nested if
+->switch case
+=> if use to check following type of  condition
+1. range condition as - if(a>b)
+2. exact condition as - if(a===b)
+
+==> switch case used to check only exact condition
+
+-->Loop
+for Loop
+while loop
+do while
+
+=>Array
+->single dimensional Array
+-->object--multiple properties and value inside an array called an object
+-->array of object
+-->nested array of object
+some of the listing functions of an array:
+foreach,map,filter
+
+type of popup in javascript
+
+1. alert () - it used to give  onfirmation to user
+2. confirm () - it collect confirmstion from user
+3. prompt() - it used to ask input from user via popup windows
+
+type of events in javascript:-
+
+mouse
+->onclick
+->ondblclick
+-onmousedown(left+right click)
+-->onmouseenter
+->onmousemove
+->onchange
+keyboard
+
+->onkeypress
+->onkeydown
+->onkeyup
+->onfocus
+->onblur
+form events
+->onsubmit
+body event
+->onload
+
+.innerText
+.innerHTML
+.value

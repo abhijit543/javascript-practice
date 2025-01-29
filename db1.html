@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      let message = "<h1>Welcome to Javascript</h1> <p>Its working</p>";
+      const one = () => {
+        document.write(message);
+      };
+      const two = () => {
+        document.getElementById("container").innerText = message;
+      };
+      const three = () => {
+        document.getElementById("container").innerHTML = message;
+      };
+    </script>
+  </head>
+  <body>
+    <h1>.innerText, .innerHtml in javascript</h1>
+    <button onclick="one()">Document.write</button>
+    <button onclick="two()">.innerText</button>
+    <button onclick="three()">.InnerHtml</button>
+    <br />
+    <br />
+    <div id="container">No Data.....</div>
+  </body>
+</html>

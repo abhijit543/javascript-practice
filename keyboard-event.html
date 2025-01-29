@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      const one = (data) => {
+        console.log("your dat is:" + data);
+      };
+      const xyz = () => {
+        document.getElementById("abc").innerText = "hellowwwwwwwwwwwwwwwwww";
+      };
+    </script>
+  </head>
+  <body onload="xyz()">
+    <h1>Kyboard events in js</h1>
+    <p>onKey press: <input type="text" value="Apple" onkeypress="one(this.value)"</p>
+    <p>onKey down: <input type="text" value="Apple" onkeydown="one(this.value)"</p>
+    <p>onKey up: <input type="text" value="Apple" onkeyup="one(this.value)"</p>
+    <p>onKey focus: <input type="text" value="Apple" onfocus="one(this.value)"</p>
+    <p>onKey blur: <input type="text" value="Apple" onblur="one(this.value)"</p>
+    <div id="abc"></div>
+    <script></script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      const one = () => {
+        alert("ok");
+        return true;
+      };
+    </script>
+  </head>
+  <body>
+    <h1>how on submit event work</h1>
+    <form action="saveuser.py" onsubmit="return one()">
+      <p>Fullname: <input type="text" /></p>
+      <p>Mobile No: <input type="number" /></p>
+      <button type="submit">submit</button>
+      <button type="reset">Reset</button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      const one = () => {
+        let textarea = document.getElementById("about").value;
+        document.getElementById("container").innerText = textarea;
+        document.getElementById("total").innerText = textarea.length;
+      };
+    </script>
+  </head>
+  <body>
+    <h1>.innerTrext .value</h1>
+    <p>Enter About your profile</p>
+    <textarea id="about" rows="10" cols="60"></textarea>
+    <p>
+      <button onclick="one()">Show profile</button>
+    </p>
+    <div id="container">No data.....</div>
+    <p id="total"></p>
+    <script></script>
+  </body>
+</html>

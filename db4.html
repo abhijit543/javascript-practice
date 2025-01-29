@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      img:hover {
+        box-shadow: 0px 0px 20px red;
+        cursor: pointer;
+      }
+    </style>
+    <script>
+      const one = (photourl) => {
+        // alert(photourl);
+        document.getElementById("mypic").src = photourl;
+      };
+    </script>
+  </head>
+  <body>
+    <div align="center">
+      <h1>How to change using js</h1>
+      <img src="1.jpg" height="400" width="600" id="mypic" />
+      <br /><br />
+      <img src="1.jpg" height="120" width="150" onmouseenter="one(this.src)" />
+      <img src="2.jpg" height="120" width="150" onmouseenter="one(this.src)" />
+      <img src="3.jpg" height="120" width="150" onmouseenter="one(this.src)" />
+      <img src="4.jpg" height="120" width="150" onmouseenter="one(this.src)" />
+    </div>
+  </body>
+</html>

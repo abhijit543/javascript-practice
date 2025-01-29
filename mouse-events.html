@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      let counter = 1;
+      const one = () => {
+        console.log("the value is: " + counter);
+        counter++;
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Mouse events ecample</h1>
+    <button onclick="one()">1clcik</button>
+    <button ondblclick="one()">doubleclcik</button>
+    <button onmousedown="one()">mouse down (left, right click)</button>
+    <button onmouseenter="one()">Mouse enter</button>
+    <button onmouseout="one()">Mouse out</button>
+    <button onmousemove="one()">Mouse move</button>
+    onchange:<select onchange="one()">
+      <option>choose</option>
+      <option>bangalore</option>
+      <option>Mumbai</option>
+      <option>Chennai</option>
+      <option>Delhi</option>
+    </select>
+    <div style="width: 300px" onwheel="one()">
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis, et fuga quos vitae aliquid explicabo reiciendis maxime amet magnam doloribus totam expedita enim recusandae minus temporibus
+      laudantium eligendi corporis officia? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam, nam voluptatum. Error ducimus hic consectetur eius earum quis, culpa eligendi id
+      consequuntur laboriosam, iste nisi repellat possimus modi amet maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quam qui iusto asperiores quia. Officia quo eum asperiores
+      repudiandae dicta ut nihil labore cumque. Sit perferendis iure consequuntur sapiente laboriosam!Lore Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, ex temporibus! Facere
+      dignissimos doloremque dolorem obcaecati, odit facilis provident culpa commodi eius at, eum quaerat odio voluptas magnam officia aut.
+    </div>
+  </body>
+</html>

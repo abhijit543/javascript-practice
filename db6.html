@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      header {
+        text-align: center;
+        padding: 20px;
+      }
+      section {
+        width: 80%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        font-size: 35px;
+        color: blue;
+      }
+      button {
+        cursor: pointer;
+      }
+      button:focus {
+        background-color: red;
+        color: white;
+      }
+    </style>
+    <script>
+      let cityList = ["bdsj", "dsafadf", "dfasf", "fdasf", "adsfadsf", "qEEQWEWQ"];
+      const getCity = () => {
+        let data = "";
+        cityList.map((result, index) => {
+          data += `<p>${result}</p>`;
+        });
+        document.getElementById("container").innerHTML = data;
+      };
+      const save = () => {
+        let newcity = prompt("enter City name");
+        cityList.push(newcity);
+        getCity();
+      };
+    </script>
+  </head>
+  <body>
+    <header>
+      <button onclick="save()">Add City</button>
+      <button onclick="getCity();">Get the city</button>
+    </header>
+    <section id="container">No data yet....</section>
+  </body>
+</html>

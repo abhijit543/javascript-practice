@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      header {
+        text-align: center;
+        padding: 20px;
+      }
+      section {
+        width: 80%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        font-size: 35px;
+        color: blue;
+      }
+      button {
+        cursor: pointer;
+      }
+      button:focus {
+        background-color: red;
+        color: white;
+      }
+    </style>
+    <script>
+      const one = () => {
+        let data = "";
+        for (let i = 1; i <= 10; i++) {
+          data = data + `<p>${i}</p>`;
+        }
+        document.getElementById("container").innerHTML = data;
+      };
+      const two = () => {
+        let data1 = "";
+        for (j = 11; j <= 20; j++) {
+          data1 = data1 + `<p>${j}</p>`;
+        }
+        document.getElementById("container").innerHTML = data1;
+      };
+      const three = () => {
+        let data1 = "";
+        for (j = 1; j <= 20; j = j + 2) {
+          data1 = data1 + `<p>${j}</p>`;
+        }
+        document.getElementById("container").innerHTML = data1;
+      };
+      const four = () => {
+        let data1 = "";
+        for (j = 2; j <= 20; j = j + 2) {
+          data1 = data1 + `<p>${j}</p>`;
+        }
+        document.getElementById("container").innerHTML = data1;
+      };
+    </script>
+  </head>
+  <body>
+    <header>
+      <button onclick="one()">print 1 to 10</button>
+      <button onclick="two()">print 11 to 20</button>
+      <button onclick="three()">print 1 to 20 odd number</button>
+      <button onclick="four()">print 1 to 20 even number</button>
+    </header>
+    <section id="container">No data yet....</section>
+  </body>
+</html>

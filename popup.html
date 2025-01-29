@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      const one = () => {
+        alert("your emailsent succefully");
+      };
+      const two = () => {
+        let x = confirm("Are you sure?");
+        alert(x);
+      };
+      const three = () => {
+        let x = prompt("Enter your email id");
+        alert(x);
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Three type of popup in js</h1>
+    <button onclick="one()">alert</button>
+    <button onclick="two()">Confirm</button>
+    <button onclick="three()">Prompt</button>
+  </body>
+</html>
