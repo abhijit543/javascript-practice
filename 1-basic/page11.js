@@ -27,7 +27,7 @@ let userlist = [
   {
     fullname: "czx ",
     age: "952",
-    city: "zxczc",
+    city: "Bangalore",
   },
 ];
 console.log(userlist[0].fullname);
