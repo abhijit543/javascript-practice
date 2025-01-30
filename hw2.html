@@ -48,10 +48,13 @@
     <script>
       const saveBtn = () => {
         let x = document.getElementById("divTextElements").value;
-        console.log(x);
 
         let y = document.getElementById("divPrice").value;
-        document.getElementById("container").innerHTML = `${x} Price is: ${y}`;
+        if (x == "" && y == "") {
+          document.getElementById("container").innerHTML = "dont click the button simply";
+        } else {
+          document.getElementById("container").innerHTML = `${x} Price is: ${y}`;
+        }
       };
       function allowOnlyNumber(event) {
         let inputvalue = event.target.value;
@@ -60,15 +63,23 @@
           event.target.value = inputvalue.slice(0, -1);
         }
       }
+      const saveLocation = () => {
+        let x = document.getElementById("divLocation").value;
+        if (x == "") {
+          document.getElementById("divLocationOutput").innerHTML = "hlw dont click simply";
+        } else {
+          document.getElementById("divLocationOutput").innerHTML = `${x} - ${x.length}`;
+        }
+      };
     </script>
   </head>
   <body>
     <div class="container">
       <div class="box">
         <label>Location</label><br />
-        <input type="text" placeholder="Enter Location" />
-        <button>GO</button>
-        <p>Location - 9</p>
+        <input type="text" placeholder="Enter Location" id="divLocation" />
+        <button onclick="saveLocation()">GO</button>
+        <p id="divLocationOutput"></p>
       </div>
 
       <div class="box">
