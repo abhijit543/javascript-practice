@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form UI</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f5f5f5;
+      }
+      .container {
+        display: flex;
+        gap: 30px;
+      }
+      .box {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 250px;
+      }
+      input {
+        width: calc(100% - 50px);
+        padding: 8px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      button {
+        padding: 8px 15px;
+        margin-top: 10px;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+      .download-icon {
+        display: inline-block;
+        margin-right: 5px;
+      }
+      #container {
+        white-space: nowrap;
+        display: flex;
+        justify-content: left;
+        margin: 1px;
+        /* padding: 2px; */
+        column-gap: 5px;
+      }
+    </style>
+    <script>
+      const storevalues = [];
+      const getClear = () => {
+        document.getElementById("divLocation").value = "";
+        document.getElementById("divTextElements").value = "";
+      };
+      const saveLocation = () => {
+        let y = document.getElementById("divLocation").value;
+        if (y == "") {
+          document.getElementsByClassName("err-msg")[0].innerHTML = "Please enter some text";
+        } else {
+          storevalues.push(y);
+          let html = storevalues.map((list) => `${list} - ${list.length}`).join("<br>");
+          document.getElementById("divLocationOutput").innerHTML = html;
+          document.getElementsByClassName("err-msg")[0].innerHTML = "";
+          getClear();
+        }
+      };
+      const storeLocation = [];
+      const saveBtn = () => {
+        let y = document.getElementById("divTextElements").value;
+        if (y == "") {
+          document.getElementsByClassName("err-msg")[1].innerHTML = "Please enter some text";
+        } else {
+          storeLocation.push(y);
+          let html = storeLocation.map((list, index) => `<P>${index} <br>  ${list}<br> ${list.length}</P>`).join("<br>");
+          document.getElementById("container").innerHTML = html;
+          document.getElementsByClassName("err-msg")[1].innerHTML = "";
+          getClear();
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box">
+        <input type="text" placeholder="Enter Location" id="divLocation" />
+        <button onclick="saveLocation()">GO</button>
+        <p class="err-msg"></p>
+        <p id="divLocationOutput"></p>
+      </div>
+
+      <div class="box">
+        <label>Name</label><br />
+        <input type="text" id="divTextElements" /><br />
+
+        <button onclick="saveBtn()">GO</button>
+        <p class="err-msg"></p>
+        <div id="container" style="white-space: nowrap"></div>
+      </div>
+    </div>
+  </body>
+</html>
