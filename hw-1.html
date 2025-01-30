@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Information input to output</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        display: flex;
+        justify-content: space-between;
+        width: 70%;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .inputBlock {
+        flex: 1;
+        margin-right: 33px;
+      }
+
+      .inputBlock p {
+        font-size: 16px;
+        margin: 10px 0;
+      }
+
+      .inputBlock input,
+      .inputBlock textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+      }
+
+      .inputBlock input:focus,
+      .inputBlock textarea:focus {
+        border-color: #4caf50;
+        outline: none;
+      }
+
+      .outputBlock {
+        flex: 1;
+        background-color: #fafafa;
+        padding: 20px;
+        border-radius: 10px;
+        box-sizing: border-box;
+      }
+
+      .outputBlock h1 {
+        margin-bottom: 20px;
+        font-size: 20px;
+        color: #333;
+      }
+
+      .outputBlock p {
+        font-size: 16px;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      h1 {
+        font-size: 24px;
+        color: #333;
+      }
+
+      textarea {
+        height: 100px;
+        resize: none;
+      }
+    </style>
+    <script>
+      const nameInput = () => {
+        let x = document.getElementById("nameValue").value;
+        document.getElementById("container").innerText = "Your Name: " + x;
+      };
+
+      const emailInput = () => {
+        let x = document.getElementById("emailValue").value;
+        document.getElementById("container1").innerText = "Email ID: " + x;
+      };
+
+      const mobileInput = () => {
+        let x = document.getElementById("mobileValue").value;
+        document.getElementById("container2").innerText = "Mobile No: " + x;
+      };
+
+      const skillHolder = () => {
+        let x = document.getElementById("skillValue").value;
+        document.getElementById("container3").innerText = "My Skills: " + x;
+      };
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="inputBlock">
+        <h1>Enter Your Data</h1>
+        <p>Name: <input type="text" onkeyup="nameInput()" id="nameValue" /></p>
+        <p>Email: <input type="email" onkeyup="emailInput()" id="emailValue" /></p>
+        <p>Mobile: <input type="tel" onkeyup="mobileInput()" id="mobileValue" /></p>
+        <p>Skills: <textarea onkeyup="skillHolder()" id="skillValue"></textarea></p>
+      </div>
+      <div class="outputBlock">
+        <h1>Personal Details</h1>
+        <p id="container">Your Name</p>
+        <p id="container1">Email ID:</p>
+        <p id="container2">Mobile No:</p>
+        <p id="container3">My Skills:</p>
+      </div>
+    </div>
+  </body>
+</html>
