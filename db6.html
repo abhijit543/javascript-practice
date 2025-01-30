@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>City List</title>
     <style>
       header {
         text-align: center;
@@ -13,39 +13,95 @@
         width: 80%;
         margin: auto;
         display: grid;
-        grid-template-columns: auto auto auto auto;
-        font-size: 35px;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+        font-size: 20px;
         color: blue;
       }
       button {
         cursor: pointer;
+        margin-top: 5px;
       }
       button:focus {
         background-color: red;
         color: white;
       }
+      input {
+        padding: 5px;
+      }
     </style>
     <script>
       let cityList = ["bdsj", "dsafadf", "dfasf", "fdasf", "adsfadsf", "qEEQWEWQ"];
-      const getCity = () => {
+
+      const getCity = (key = "") => {
         let data = "";
-        cityList.map((result, index) => {
-          data += `<p>${result}</p>`;
+        cityList.forEach((result, index) => {
+          if (result.toLowerCase().match(key.toLowerCase())) {
+            data += `<div><p>${result}</p><button onclick="deleteBtn(${index})">Delete</button></div>`;
+          }
         });
-        document.getElementById("container").innerHTML = data;
+        if (data == "") {
+        }
+        document.getElementById("container").innerHTML = data || "No matching data...";
       };
-      const save = () => {
-        let newcity = prompt("enter City name");
-        cityList.push(newcity);
+
+      const deleteBtn = (index) => {
+        cityList.splice(index, 1);
         getCity();
+      };
+
+      const save1 = () => {
+        let newcity = document.getElementById("myCity").value.trim();
+        if (newcity) {
+          cityList.push(newcity);
+          getCity();
+          clearText();
+        } else {
+          alert("City name cannot be empty!");
+        }
+      };
+
+      const save = () => {
+        let newcity = document.getElementById("myCity").value.trim();
+        if (newcity) {
+          cityList.unshift(newcity);
+          getCity();
+          clearText();
+        } else {
+          alert("City name cannot be empty!");
+        }
+      };
+
+      const clearText = () => {
+        document.getElementById("myCity").value = "";
+      };
+
+      const delFirst = () => {
+        if (cityList.length) {
+          cityList.shift();
+          getCity();
+        }
+      };
+
+      const delLast = () => {
+        if (cityList.length) {
+          cityList.pop();
+          getCity();
+        }
       };
     </script>
   </head>
-  <body>
+  <body onload="getCity()">
+    <h1>push(),unshift(),shift(),splice(),pop(),match()</h1>
     <header>
-      <button onclick="save()">Add City</button>
-      <button onclick="getCity();">Get the city</button>
+      Enter City Name: <input type="text" id="myCity" />
+      <button onclick="save()">Add First</button>
+      <button onclick="save1()">Add Last</button>
+      <button onclick="getCity();">Show Cities</button>
+      <button onclick="delFirst()">Delete First</button>
+      <button onclick="delLast()">Delete Last</button>
     </header>
-    <section id="container">No data yet....</section>
+    <p align="center">Search: <input type="text" onkeyup="getCity(this.value)" /></p>
+    <section id="container">No data yet...</section>
   </body>
 </html>
