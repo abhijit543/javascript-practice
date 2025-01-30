@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form UI</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f5f5f5;
+      }
+      .container {
+        display: flex;
+        gap: 30px;
+      }
+      .box {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 250px;
+      }
+      input {
+        width: calc(100% - 50px);
+        padding: 8px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      button {
+        padding: 8px 15px;
+        margin-top: 10px;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+      .download-icon {
+        display: inline-block;
+        margin-right: 5px;
+      }
+    </style>
+    <script>
+      const saveBtn = () => {
+        let x = document.getElementById("divTextElements").value;
+        console.log(x);
+
+        let y = document.getElementById("divPrice").value;
+        document.getElementById("container").innerHTML = `${x} Price is: ${y}`;
+      };
+      function allowOnlyNumber(event) {
+        let inputvalue = event.target.value;
+        let regex = /^(1000|[1-9]\d{0,2})$/;
+        if (!regex.test(inputvalue)) {
+          event.target.value = inputvalue.slice(0, -1);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box">
+        <label>Location</label><br />
+        <input type="text" placeholder="Enter Location" />
+        <button>GO</button>
+        <p>Location - 9</p>
+      </div>
+
+      <div class="box">
+        <label>Name</label><br />
+        <input type="text" id="divTextElements" /><br />
+        <label>Price</label><br />
+        <input type="text" id="divPrice" oninput="allowOnlyNumber(event)" />
+        <button onclick="saveBtn()">GO</button>
+        <p id="container"></p>
+      </div>
+    </div>
+  </body>
+</html>
