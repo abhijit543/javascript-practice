@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script>
+    let user = {
+      name: "Alex",
+      age: "25 years",
+      city: "bangalore",
+      edu: "MCA",
+      skill: ["html", "css", "cxC", "czczxc"],
+      getbasic: function () {
+        let data = `<h1>Basic Details
+    <p>Full Name:${this.name}</p>
+     <p>age:${this.age}</p>
+      <p>city:${this.city}</p>
+       <p>edu:${this.edu}</p>
+    `;
+        document.getElementById("container").innerHTML = data;
+      },
+      getSkill: function () {
+        let html = "";
+        user.skill.map((techskill, index) => {
+          html += `<ul><li>${techskill}</li></ul>`;
+        });
+        document.getElementById("container").innerHTML = html;
+      },
+    };
+  </script>
+  <body>
+    <h1>How to work with object in javascript</h1>
+    <button onclick="user.getbasic()">user Basic</button>
+    <button onclick="user.getSkill()">user Skill</button>
+    <section id="container"></section>
+    <!-- <section id="container1"></section> -->
+  </body>
+</html>
