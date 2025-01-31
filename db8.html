@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      let userlist = [
+        { fullname: "abhi", edu: "mca", ag1: 21 },
+        { fullname: "fff", edu: "mcfsga", ag1: 22 },
+        { fullname: "dfvabhi", edu: "fsdmca", ag1: 22 },
+        { fullname: "abvffdhi", edu: "msdfca", ag1: 22 },
+      ];
+      const getUser = () => {
+        let data = "";
+        userlist.map((user, index) => {
+          data += `<tr>
+                <td>${index}</td>
+                <td>${user.fullname}</td>
+                <td>${user.edu}</td>
+                <td>${user.ag1}</td>
+                <td> <button onclick="editDetails(${index})">Edit</button></td>
+                <td> <button onclick="deleteDetails(${index})">Delete</button></td>
+                </tr>
+                `;
+        });
+        document.getElementById("container").innerHTML = data;
+      };
+      const saveuser = () => {
+        let name = document.getElementById("fname").value;
+        let education = document.getElementById("education").value;
+        let ageyear = document.getElementById("agenum").value;
+        let newuser = { fullname: name, edu: education, ag1: ageyear };
+        if (userIndex == "save") {
+          userlist.push(newuser);
+        } else {
+          userlist[userIndex] = newuser; //update the value on specific index
+          userIndex = "save";
+          document.getElementById("myBtn").innerText = "Save User";
+        }
+
+        getUser();
+        document.getElementById("fname").value = "";
+        document.getElementById("education").value = "";
+        document.getElementById("agenum").value = "";
+      };
+      const deleteDetails = (index) => {
+        userlist.splice(index, 1);
+        getUser();
+      };
+      let userIndex = "save";
+      const editDetails = (index) => {
+        let user = userlist[index];
+        userIndex = index;
+        document.getElementById("fname").value = user.fullname;
+        document.getElementById("education").value = user.edu;
+        document.getElementById("agenum").value = user.ag1;
+        document.getElementById("myBtn").innerText = "Update User";
+      };
+    </script>
+  </head>
+  <body onload="getUser()">
+    <h1 align="center">Array or object, Add, List, Edit, Delete</h1>
+    <p align="center">
+      FullNAme:<input type="text" id="fname" /> Education:<input type="text" id="education" /> passing year:<input type="number" id="agenum" />
+      <button onclick="saveuser()" id="myBtn">Save User</button>
+    </p>
+    <table align="center" cellpadding="10">
+      <thead>
+        <tr>
+          <th>Sl no</th>
+          <th>Fullname</th>
+          <th>Education</th>
+          <th>age</th>
+          <th colspan="2">Action</th>
+        </tr>
+      </thead>
+      <tbody id="container"></tbody>
+    </table>
+  </body>
+</html>
