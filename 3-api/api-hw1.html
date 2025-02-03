@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>List Data Layout</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 20px;
+      }
+      .container {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+      }
+      .box {
+        width: 200px;
+        height: 577px;
+        border: 2px solid black;
+        padding: 10px;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .list {
+        flex-grow: 1;
+        padding: 10px;
+      }
+      .button {
+        display: block;
+        text-align: center;
+        padding: 8px;
+        border: 1px solid black;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 14px;
+        cursor: pointer;
+      }
+    </style>
+    <script>
+      const getUser = () => {
+        fetch("user.json")
+          .then((user) => user.json())
+          .then((userlistArray) => {
+            let data = "";
+            userlistArray.map((users, index) => {
+              data = data + `<p>${index + 1}. ${users}</p>`;
+            });
+            document.getElementById("userName").innerHTML = data;
+          });
+      };
+      const getBook = () => {
+        fetch("book.json")
+          .then((book) => book.json())
+          .then((booklistArray) => {
+            let data = "";
+            booklistArray.map((books, index) => {
+              data = data + `<p>${index + 1}. ${books}</p>`;
+            });
+            document.getElementById("book").innerHTML = data;
+          });
+      };
+      const getCompany = () => {
+        fetch("comapny.json")
+          .then((company) => company.json())
+          .then((companyArray) => {
+            let data = "";
+            companyArray.map((compani, index) => {
+              data = data + `<p>${index + 1}. ${compani}</p>`;
+            });
+            document.getElementById("company").innerHTML = data;
+          });
+      };
+      const getEmployee = () => {
+        fetch("employee.json")
+          .then((employee) => employee.json())
+          .then((employeeArray) => {
+            let data = "";
+            employeeArray.map((employee, index) => {
+              data = data + `<p>${index + 1}. ${employee}</p>`;
+            });
+            document.getElementById("employee").innerHTML = data;
+          });
+      };
+      const open = () => {
+        alert("please click on the get data buton");
+      };
+    </script>
+  </head>
+  <body onload="open()">
+    <h2>User List</h2>
+    <div class="container">
+      <div class="box">
+        <h3>User Name</h3>
+        <div class="list" id="userName"></div>
+        <a class="button" onclick="getUser()">get Data</a>
+      </div>
+
+      <div class="box">
+        <h3>Book List</h3>
+        <div class="list" id="book"></div>
+        <a class="button" onclick="getBook()">get Data</a>
+      </div>
+
+      <div class="box">
+        <h3>Company List</h3>
+        <div class="list" id="company"></div>
+        <a class="button" onclick="getCompany()">get Data</a>
+      </div>
+
+      <div class="box">
+        <h3>Employee List</h3>
+        <div class="list" id="employee"></div>
+        <a class="button" onclick="getEmployee()">get Data</a>
+      </div>
+    </div>
+  </body>
+</html>
