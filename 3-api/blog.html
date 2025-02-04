@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #container {
+        width: 80%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: auto auto auto;
+      }
+      #container div {
+        padding: 20px;
+      }
+    </style>
+    <script>
+      const saveblog = async () => {
+        let url = "http://localhost:1234/blogapi";
+        let btitle = document.getElementById("btitle").value;
+        let bdetails = document.getElementById("bdetails").value;
+        let blogData = { title: btitle, details: bdetails };
+        let jsonData = JSON.stringify(blogData); //object, array to json
+        let postdata = {
+          headers: { "content-type": "application/json" },
+          method: "post",
+          body: jsonData,
+        };
+        try {
+          await fetch(url, postdata)
+            .then((response) => response.json())
+            .then((info) => {
+              let btitle = (document.getElementById("btitle").value = "");
+              let bdetails = (document.getElementById("bdetails").value = "");
+              getblog();
+            });
+        } catch (error) {
+          alert("server error");
+        }
+      };
+      //blog list
+      const getblog = () => {
+        fetch("http://localhost:1234/blogapi")
+          .then((response) => response.json())
+          .then((blogArray) => {
+            let data = "";
+            blogArray.reverse();
+            for (let blog of blogArray) {
+              data =
+                data +
+                `<div>
+                <h3>${blog.title}</h3>
+                  <p>${blog.details}</p>
+                </div>`;
+            }
+            document.getElementById("container").innerHTML = data;
+          });
+      };
+    </script>
+  </head>
+  <body onload="getblog()">
+    <h1>ADD list, Edit , Delete</h1>
+    <p>get(),post(),put(),patch(),delete()</p>
+
+    <p>Blog Title</p>
+    <input type="text" id="btitle" size="40" />
+    <p>Deatils</p>
+    <textarea id="bdetails" rows="10" cols="40"></textarea>
+    <p>
+      <button onclick="saveblog()">save</button>
+    </p>
+    <h2>Recent Blogs</h2>
+    <section id="container"></section>
+  </body>
+</html>
