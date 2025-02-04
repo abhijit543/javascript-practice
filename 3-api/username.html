@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script>
+      const saveUsers = async () => {
+        let url = "http://localhost:1234/userapi";
+        let username = document.getElementById("userName").value;
+        let usermobile = document.getElementById("userMob").value;
+        let useremail = document.getElementById("userEmail").value;
+        if (username !== "" && usermobile !== "" && useremail !== "") {
+          let userData = { name: username, mobile: usermobile, email: useremail };
+          let jsonData = JSON.stringify(userData); //object, array to json
+          let postdata = {
+            headers: { "content-type": "application/json" },
+            method: "post",
+            body: jsonData,
+          };
+          try {
+            await fetch(url, postdata)
+              .then((response) => response.json())
+              .then((info) => {
+                document.getElementById("userName").value = "";
+                document.getElementById("userMob").value = "";
+                document.getElementById("userEmail").value = "";
+              });
+          } catch (error) {
+            alert("server error");
+          }
+        } else {
+          alert("please dont keep empty");
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <div id="showSignupDiv">
+      <h1>Sign UP</h1>
+      <input type="text" id="userName" placeholder="Name" />
+      <input type="mobile" id="userMob" placeholder="Mobile" />
+      <input type="email" id="userEmail" placeholder="Email" />
+
+      <button onclick="saveUsers()">sign to see the blogs</button>
+    </div>
+  </body>
+</html>
