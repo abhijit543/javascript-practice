@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      class Mydata {
+        constructor() {
+          this.city = ["bangalore", "mumbai", "pune", "chennai", "Kolkata", "delhi"];
+          this.product = ["laptop", "desktop", "mouse", "printer", "scanner"];
+        }
+        getproduct = () => {
+          let data = "<h1>Product List</h1>";
+          for (let productname of this.product) {
+            data = data + `<p>${productname}</p>`;
+          }
+          this.printData(data);
+        };
+        printData = (data) => {
+          document.getElementById("container").innerHTML = data;
+        };
+        getcity = () => {
+          let data = "<h1>City List</h1>";
+          for (let cityname of this.city) {
+            data = data + `<p>${cityname}</p>`;
+          }
+          this.printData(data);
+        };
+        printData = (data) => {
+          document.getElementById("container").innerHTML = data;
+        };
+        save = (x) => {
+          let newdata = document.getElementById("newrecord").value;
+          if (x == "city") {
+            this.city.push(newdata);
+            this.getcity();
+          } else {
+            this.product.push(newdata);
+            this.getproduct();
+          }
+          document.getElementById("newrecord").value = "";
+        };
+      }
+      const obj2 = new Mydata();
+    </script>
+  </head>
+  <body>
+    Enter New Record:<input type="text" id="newrecord" />
+    <button onclick="obj2.save('city')">save in City</button>
+    <button onclick="obj2.save('product')">save in product</button>
+
+    <button onclick="obj2.getproduct()">Product</button>
+    <button onclick="obj2.getcity()">City</button>
+    <section id="container"></section>
+  </body>
+</html>

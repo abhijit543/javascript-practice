@@ -17,26 +17,38 @@
     </style>
     <script>
       const saveblog = async () => {
+        let mymethod = "post";
         let url = "http://localhost:1234/blogapi";
+        if (blogid != "") {
+          mymethod = "put";
+          url = "http://localhost:1234/blogapi/" + blogid;
+          blogid = ""; //reset to default
+          document.getElementById("mybtn").innerText = "Save";
+        }
         let btitle = document.getElementById("btitle").value;
         let bdetails = document.getElementById("bdetails").value;
-        let blogData = { title: btitle, details: bdetails };
-        let jsonData = JSON.stringify(blogData); //object, array to json
-        let postdata = {
-          headers: { "content-type": "application/json" },
-          method: "post",
-          body: jsonData,
-        };
-        try {
-          await fetch(url, postdata)
-            .then((response) => response.json())
-            .then((info) => {
-              let btitle = (document.getElementById("btitle").value = "");
-              let bdetails = (document.getElementById("bdetails").value = "");
-              getblog();
-            });
-        } catch (error) {
-          alert("server error");
+        if (btitle == "" || bdetails == "") {
+          if (btitle == "") document.getElementById("btitle").focus();
+          else document.getElementById("bdetails").focus();
+        } else {
+          let blogData = { title: btitle, details: bdetails };
+          let jsonData = JSON.stringify(blogData); //object, array to json
+          let postdata = {
+            headers: { "content-type": "application/json" },
+            method: mymethod,
+            body: jsonData,
+          };
+          try {
+            await fetch(url, postdata)
+              .then((response) => response.json())
+              .then((info) => {
+                document.getElementById("btitle").value = "";
+                document.getElementById("bdetails").value = "";
+                getblog();
+              });
+          } catch (error) {
+            alert("server error");
+          }
         }
       };
       //blog list
@@ -52,9 +64,38 @@
                 `<div>
                 <h3>${blog.title}</h3>
                   <p>${blog.details}</p>
+                  <button onclick="editblog('${blog.id}')">Edit</button>
+                     <button onclick="deleteblog('${blog.id}')">Delete</button>
+                  
                 </div>`;
             }
             document.getElementById("container").innerHTML = data;
+          });
+      };
+      const deleteblog = (id) => {
+        let x = confirm("Are you sure");
+        if (x == true) {
+          let url = "http://localhost:1234/blogapi/" + id;
+          let postdata = { method: "delete" };
+          fetch(url, postdata)
+            .then((response) => response.json())
+            .then((info) => {
+              alert(info.title + "deleted....");
+              getblog();
+            });
+        }
+      };
+      let blogid = "";
+      const editblog = (id) => {
+        document.getElementById("mybtn").innerText = "Update";
+        blogid = id; //assign from local to global variable
+        let url = "http://localhost:1234/blogapi/" + id;
+
+        fetch(url)
+          .then((response) => response.json())
+          .then((info) => {
+            document.getElementById("btitle").value = info.title;
+            document.getElementById("bdetails").value = info.details;
           });
       };
     </script>
@@ -68,7 +109,7 @@
     <p>Deatils</p>
     <textarea id="bdetails" rows="10" cols="40"></textarea>
     <p>
-      <button onclick="saveblog()">save</button>
+      <button onclick="saveblog()" id="mybtn">save</button>
     </p>
     <h2>Recent Blogs</h2>
     <section id="container"></section>
