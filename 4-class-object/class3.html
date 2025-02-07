@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      section {
+        width: 80%;
+        margin: auto;
+      }
+
+      p {
+        width: 20%;
+        display: inline-block;
+        text-align: center;
+      }
+      h1 {
+        color: blue;
+        text-align: center;
+        font-size: 50px;
+      }
+    </style>
+    <script>
+      class Stock {
+        constructor() {
+          this.itemlist = ["Water", "Milk", "Sugar", "Salt", "Potato"];
+        }
+      }
+
+      class ShopOne extends Stock {
+        constructor() {
+          super(); // it call constructor from parent class
+          this.shopaddress = "#123, Marathahalli Bangalore 560037";
+          this.selecteditem = [];
+        }
+
+        chooseitem = (itemname) => {
+          this.selecteditem.push(itemname);
+          alert(itemname + "  Added in your cart");
+        };
+
+        shopopen = () => {
+          let data = `<h1> ${this.shopaddress} </h1>`;
+          this.itemlist.map((itemname, index) => {
+            data = data + `<p> ${itemname} <br/><br/> <button onclick="obj3.chooseitem('${itemname}')">Choose</button> </p>`;
+          });
+          document.getElementById("container").innerHTML = data;
+        };
+
+        shopclose = () => {
+          let data = `<h1> ${this.shopaddress} </h1>`;
+          data = data + `<p style="color:red;"> Shop is Closed </p> `;
+          document.getElementById("container").innerHTML = data;
+        };
+      }
+
+      const obj3 = new ShopOne();
+    </script>
+  </head>
+  <body onload="obj3.shopopen()">
+    <button onclick="obj3.shopopen()">Shop Open</button>
+    <button onclick="obj3.shopclose()">Shop Close</button>
+
+    <section id="container"></section>
+  </body>
+</html>

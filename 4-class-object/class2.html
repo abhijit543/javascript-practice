@@ -4,6 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      header {
+        text-align: center;
+        padding: 30px;
+      }
+      section {
+        width: 80%;
+        margin: auto;
+      }
+      p {
+        width: 20%;
+        display: inline-block;
+        text-align: center;
+      }
+      h1 {
+        color: blue;
+        text-align: center;
+        font-size: 50px;
+      }
+    </style>
     <script>
       class Mydata {
         constructor() {
@@ -12,20 +32,32 @@
         }
         getproduct = () => {
           let data = "<h1>Product List</h1>";
+          let i;
           for (let productname of this.product) {
-            data = data + `<p>${productname}</p>`;
+            data = data + `<p>${productname} <br/> <br/> <button onclick="obj2.delProduct(${i})">Delete</button></p>`;
+            i++;
           }
           this.printData(data);
+        };
+        delProduct = (index) => {
+          this.product.splice(index, 1);
+          this.getproduct();
         };
         printData = (data) => {
           document.getElementById("container").innerHTML = data;
         };
         getcity = () => {
           let data = "<h1>City List</h1>";
+          let i = 0;
           for (let cityname of this.city) {
-            data = data + `<p>${cityname}</p>`;
+            data = data + `<p>${cityname}<br/> <br/> <button onclick="obj2.delCity(${i})">Delete</button></p>`;
+            i++;
           }
           this.printData(data);
+        };
+        delCity = (index) => {
+          this.city.splice(index, 1);
+          this.getcity();
         };
         printData = (data) => {
           document.getElementById("container").innerHTML = data;
@@ -42,16 +74,19 @@
           document.getElementById("newrecord").value = "";
         };
       }
+
       const obj2 = new Mydata();
     </script>
   </head>
   <body>
-    Enter New Record:<input type="text" id="newrecord" />
-    <button onclick="obj2.save('city')">save in City</button>
-    <button onclick="obj2.save('product')">save in product</button>
+    <header>
+      Enter New Record:<input type="text" id="newrecord" />
+      <button onclick="obj2.save('city')">save in City</button>
+      <button onclick="obj2.save('product')">save in product</button>
 
-    <button onclick="obj2.getproduct()">Product</button>
-    <button onclick="obj2.getcity()">City</button>
+      <button onclick="obj2.getproduct()">Product</button>
+      <button onclick="obj2.getcity()">City</button>
+    </header>
     <section id="container"></section>
   </body>
 </html>
