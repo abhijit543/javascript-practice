@@ -38,6 +38,8 @@
         chooseitem = (itemname) => {
           this.selecteditem.push(itemname);
           alert(itemname + "  Added in your cart");
+          // document.getElementById("myItem").innerHTML = itemname;\
+          this.getmyitem();
         };
 
         shopopen = () => {
@@ -53,6 +55,13 @@
           data = data + `<p style="color:red;"> Shop is Closed </p> `;
           document.getElementById("container").innerHTML = data;
         };
+        getmyitem = () => {
+          let data = "<h3>Selected Item</h3>";
+          this.selecteditem.map((itemname, index) => {
+            data = data + `<div>${itemname}</div>`;
+          });
+          document.querySelector("#myItem").innerHTML = data;
+        };
       }
 
       const obj3 = new ShopOne();
@@ -63,5 +72,6 @@
     <button onclick="obj3.shopclose()">Shop Close</button>
 
     <section id="container"></section>
+    <div id="myItem"></div>
   </body>
 </html>

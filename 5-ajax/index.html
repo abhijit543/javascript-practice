@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="dist/css/bootstrap.css"/>
+    <script>
+        const gethome = () =>{
+            var xmlhttp = new XMLHttpRequest(); // it create object of XMLHttpRequest   - this.readyState = 0 
+            xmlhttp.open("GET","home.html");// it generate url on get method - this.readyState = 1 
+            xmlhttp.send(); // it send request to above generated url      - this.readyState = 2
+            // this.readyState = 3 -  LOADING	Downloading; storing into => responseText.
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("ajaxdata").innerHTML = this.responseText;
+                    }
+                };
+        }
+
+        /*
+            Value	State	Description
+            0	    UNSENT	Client has been created. open() not called yet.
+            1	    OPENED	open() has been called.
+            2	    HEADERS_RECEIVED	send() has been called, and headers and status are available.
+            3	    LOADING	Downloading; responseText holds partial data.
+            4	    DONE	The operation is complete.
+        */
+
+        const getabout = () =>{
+            var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("ajaxdata").innerHTML = this.responseText;
+            }
+            };
+            xmlhttp.open("GET","about.html");
+            xmlhttp.send();
+        }
+
+        const getservice = () =>{
+            var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("ajaxdata").innerHTML = this.responseText;
+            }
+            };
+            xmlhttp.open("GET","service.html");
+            xmlhttp.send();
+        }
+
+        const getcity = () =>{
+            var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                   let allcity = JSON.parse( this.responseText ); // json to array 
+
+                   let data  = "<h3> Available Branches </h3>";
+                   allcity.map((cityname, index)=>{
+                        data = data + `<p class='p-3 border m-3 text-primary'> ${cityname} </p>`;
+                   })
+
+                   document.getElementById("ajaxdata").innerHTML = data;
+                }
+            };
+            xmlhttp.open("GET","city.json");
+            xmlhttp.send();
+        }
+    </script>
+</head>
+<body onload="gethome()">
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-xl-4">
+                <h1 class="text-danger"> <i class="fa fa-spinner fa-spin text-info"></i> AJAX </h1>
+            </div>
+            <div class="col-xl-8 text-end">
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="gethome()"> <i class="fa fa-home"></i> Home </button>
+                    <button class="btn btn-info" onclick="getabout()"> <i class="fa fa-building"></i> About Us </button>
+                    <button class="btn btn-success" onclick="getservice()"> <i class="fa fa-tools"></i> Our Services </button>
+                    <button class="btn btn-warning" onclick="getcity()"> <i class="fa fa-city"></i> Our Branches </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col-xl-3">
+                <div class="bg-info p-3 rounded text-white">
+                    <h5> Firstenquiry </h5>
+                    <p> #123, 1st floor, outer ring road, marathahalli bangalore </p>
+                    <p> +91 - 8884166608 </p>
+                    <p> contact@firstenquiry.com </p>
+                </div>
+
+                <div class="mt-4 p-3 bg-light rounded">
+                    <p>
+                        Your Name <input type="text" class="form-control form-control-sm"/>
+                    </p>
+                    <p>
+                        Your Mobile No <input type="number" class="form-control form-control-sm"/>
+                    </p>
+                    <p class="text-center">
+                        <button class="btn btn-danger btn-sm"> Call Me Back </button>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-xl-7" id="ajaxdata">
+                <p class="text-center mt-5"> Please Wait loading.... </p>
+            </div>
+
+            <div class="col-xl-2">
+                <div class="p-2">
+                    <div> The Jobs and employment </div>
+                    <img src="1.jpg" class="img-fluid rounded-circle mb-5"/>
+
+                    <div> Changes in IT & Demands </div>
+                    <img src="2.jpg" class="img-fluid rounded-circle mb-5"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
